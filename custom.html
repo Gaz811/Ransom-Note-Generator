@@ -2,10 +2,23 @@
 Your browser does not support the HTML5 canvas tag.
 </canvas>
 
+<p>
+<input id="textInput" type="text">
+<input type="button" value="Write message" onClick="getSentence()"> <!-- on click  run the function -->
+</p>
 
 <script>
+    
+    var sentence; 
+
+         function getSentence()
+      {
+          sentence = document.getElementById("textInput").value; // get input value
+          ransomFont(); // run the function to draw the input
+
+      }
+    
     // parameters
-    var sentence = "Pay up or else!" // the text I want to write
     var normalFontSize = 50;			// font size to start with
     var textSize = 70;					// base text size
     var changeHeight = 10;			// change the height of each letter 
@@ -59,6 +72,5 @@ var fontColor;
   }
 }
 
-ransomFont();
 
     </script>
