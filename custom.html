@@ -1,0 +1,64 @@
+<canvas id="myCanvas" width="1024" height="768" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+<script>
+    // parameters
+    var sentence = "Pay up or else!" // the text I want to write
+    var normalFontSize = 50;			// font size to start with
+    var textSize = 70;					// base text size
+    var changeHeight = 10;			// change the height of each letter 
+    var changeFont = 10;		// change the font size of each letter
+    var textX = 50;							// how far across the first letter should be to start
+
+    // get canvas element
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    // list of fonts going to use store these a new array
+    var fonts = ["Arial", "Comic Sans MS", "Courier_New", "Georgia", "Verdana"];
+    
+    //list of colors going to use
+    var color = ["red", "green", "blue", "orange", "black"];
+
+    
+    // my function 
+function ransomFont() {
+	
+var fontType; // delcaring variables I want to use before start my loop
+var fontSize;
+var fontHeight;
+var fontColor;
+  
+	for (var i = 0; i < sentence.length; i++) { // for loop while i is less than the length of my setence execute the following
+        
+    // get a random font type from the font array using the math.random function    
+        
+  	fontType = fonts[Math.floor(Math.random() * fonts.length)];
+        
+    // get a random color from the color array using the math.random function
+    fontColor = color[Math.floor(Math.random() * fonts.length)];  
+            
+    // set the font size randomly using the normal font size and the base text size variables
+    fontSize = normalFontSize + (Math.random() * 2 * changeFont) - changeFont;
+        
+    // set the font height using the text size and changeheight variables
+    fontHeight = textSize + (Math.random() * 2 * changeHeight) - changeHeight;
+
+
+    
+    // Drawing the font to the canvas here
+    ctx.fillStyle = (`${fontColor}`);
+    ctx.font = (`${fontSize}px ${fontType}`); //using template literals inside a string. Setting the font size and family before letter is drawn
+    ctx.fillText(sentence[i], textX, fontHeight); /* charAt is a string object method which returns 1 character in the string,  checks
+    the value of x and move its across. Last thing runs the random height function for a height*/
+    
+    // this spaces the letters out it updates every loop so the letters don't stack
+    textX += 30;
+  }
+}
+
+ransomFont();
+
+    </script>
